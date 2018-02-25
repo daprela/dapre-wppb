@@ -1,5 +1,7 @@
 <?php
 
+namespace dapre_wppb\includes;
+
 /**
  * Define the internationalization functionality
  *
@@ -24,7 +26,7 @@
  * @subpackage Dapre_Wppb/includes
  * @author     Giulio Daprela <giulio.daprela@gmail.com>
  */
-class Dapre_Wppb_i18n {
+class i18n {
 
 
 	/**

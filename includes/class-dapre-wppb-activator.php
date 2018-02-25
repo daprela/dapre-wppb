@@ -1,5 +1,7 @@
 <?php
 
+namespace dapre_wppb\includes;
+
 /**
  * Fired during plugin activation
  *
@@ -20,7 +22,7 @@
  * @subpackage Dapre_Wppb/includes
  * @author     Giulio Daprela <giulio.daprela@gmail.com>
  */
-class Dapre_Wppb_Activator {
+class Activator {
 
 	/**
 	 * Short Description. (use period)

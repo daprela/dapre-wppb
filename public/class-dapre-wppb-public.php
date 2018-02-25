@@ -1,5 +1,7 @@
 <?php
 
+namespace dapre_wppb\plugin_public;
+
 /**
  * The public-facing functionality of the plugin.
  *
@@ -7,50 +9,27 @@
  * @since      1.0.0
  *
  * @package    Dapre_Wppb
- * @subpackage Dapre_Wppb/public
+ * @subpackage Dapre_Wppb/plugin_public
  */
 
 /**
  * The public-facing functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
+ * Defines two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
  * @package    Dapre_Wppb
- * @subpackage Dapre_Wppb/public
+ * @subpackage Dapre_Wppb/plugin_public
  * @author     Giulio Daprela <giulio.daprela@gmail.com>
  */
-class Dapre_Wppb_Public {
-
-	/**
-	 * The ID of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
-	 */
-	private $plugin_name;
-
-	/**
-	 * The version of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
-	 */
-	private $version;
+class Plugin_Public {
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
-
-		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+	public function __construct() {
 
 	}
 
@@ -63,17 +42,10 @@ class Dapre_Wppb_Public {
 
 		/**
 		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Dapre_Wppb_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Dapre_Wppb_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
 		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/dapre-wppb-public.css', array(), $this->version, 'all' );
+		
+		$version = \dapre_wppb\get_asset_version( \dapre_wppb\PLUGIN_PATH . 'admin/css/dapre-wppb-public.css');
+		wp_enqueue_style( \dapre_wppb\PLUGIN_NAME, plugin_dir_url( __FILE__ ) . 'css/dapre-wppb-public.css', array(), $version, 'all' );
 
 	}
 
@@ -86,17 +58,10 @@ class Dapre_Wppb_Public {
 
 		/**
 		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Dapre_Wppb_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Dapre_Wppb_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
 		 */
-
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/dapre-wppb-public.js', array( 'jquery' ), $this->version, false );
+		
+		$version = \dapre_wppb\get_asset_version( \dapre_wppb\PLUGIN_PATH . 'admin/js/dapre-wppb-public.js');
+		wp_enqueue_script( \dapre_wppb\PLUGIN_NAME, plugin_dir_url( __FILE__ ) . 'js/dapre-wppb-public.js', array( 'jquery' ), $version, false );
 
 	}
 
