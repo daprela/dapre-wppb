@@ -41,7 +41,7 @@ define( __NAMESPACE__ . '\PLUGIN_PATH', WP_PLUGIN_DIR.'/'.plugin_basename( dirna
 define( __NAMESPACE__ . '\PLUGIN_SLUG', plugin_basename( dirname(__FILE__) ) );
 
 /**
- * Define the version constant from the version in the header
+ * Define the version constant from the version in the header and the name constant
  */
 function setup_constants() {
 	// get all plugins installed
@@ -59,19 +59,19 @@ add_action('plugins_loaded',  __NAMESPACE__ . '\setup_constants',2,-1000);
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-dapre-wppb-activator.php
+ * This action is documented in includes/class-activator.php
  */
 function activate_dapre_wppb() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-dapre-wppb-activator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-activator.php';
 	includes\Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-dapre-wppb-deactivator.php
+ * This action is documented in includes/class-deactivator.php
  */
 function deactivate_dapre_wppb() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-dapre-wppb-deactivator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-deactivator.php';
 	includes\Deactivator::deactivate();
 }
 
@@ -86,6 +86,9 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-dapre-wppb.php';
 
 /**
  * Provides the asset timestamp as version number if we are in debug mode or the plugin version if we are in production mode
+ * This allows to adjust and debug scripts and styles in staging environment because every time that we save the file 
+ * the timestamp is updated and therefore the asset version changes.
+ * When the code moves to production the version used is the official plugin version.
  * 
  * @param string $asset_file complete path to the asset file (not to confuse with the URL)
  * @return string the asset version

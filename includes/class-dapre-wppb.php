@@ -61,9 +61,6 @@ class Dapre_Wppb {
 	 * - Dapre_Wppb_Admin. Defines all hooks for the admin area.
 	 * - Dapre_Wppb_Public. Defines all hooks for the public side of the site.
 	 *
-	 * Create an instance of the loader which will be used to register the hooks
-	 * with WordPress.
-	 *
 	 * @since    1.0.0
 	 * @access   private
 	 */
@@ -73,25 +70,25 @@ class Dapre_Wppb {
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-dapre-wppb-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-dapre-wppb-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-plugin-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-dapre-wppb-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-plugin-public.php';
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Dapre_Wppb_i18n class in order to set the domain and to register the hook
+	 * Uses the i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
