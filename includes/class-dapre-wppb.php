@@ -57,9 +57,9 @@ class Dapre_Wppb {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Dapre_Wppb_i18n. Defines internationalization functionality.
-	 * - Dapre_Wppb_Admin. Defines all hooks for the admin area.
-	 * - Dapre_Wppb_Public. Defines all hooks for the public side of the site.
+	 * - i18n. Defines internationalization functionality.
+	 * - Plugin_Admin. Defines all hooks for the admin area.
+	 * - Plugin_Public. Defines all hooks for the public side of the site.
 	 *
 	 * @since    1.0.0
 	 * @access   private
