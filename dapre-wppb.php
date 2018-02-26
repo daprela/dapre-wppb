@@ -61,7 +61,7 @@ add_action('plugins_loaded',  __NAMESPACE__ . '\setup_constants',2,-1000);
  * The code that runs during plugin activation.
  * This action is documented in includes/class-activator.php
  */
-function activate_dapre_wppb() {
+function activate_plugin() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-activator.php';
 	includes\Activator::activate();
 }
@@ -70,7 +70,7 @@ function activate_dapre_wppb() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-deactivator.php
  */
-function deactivate_dapre_wppb() {
+function deactivate_plugin() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-deactivator.php';
 	includes\Deactivator::deactivate();
 }
