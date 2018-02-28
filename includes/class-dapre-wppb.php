@@ -44,6 +44,8 @@ class Dapre_Wppb {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
+		
+		spl_autoload_register( array($this,'autoload') );
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -53,13 +55,7 @@ class Dapre_Wppb {
 	}
 
 	/**
-	 * Load the required dependencies for this plugin.
-	 *
-	 * Include the following files that make up the plugin:
-	 *
-	 * - i18n. Defines internationalization functionality.
-	 * - Plugin_Admin. Defines all hooks for the admin area.
-	 * - Plugin_Public. Defines all hooks for the public side of the site.
+	 * Load the required dependencies for this plugin. Classes files are loaded by the autoloader
 	 *
 	 * @since    1.0.0
 	 * @access   private
@@ -67,22 +63,33 @@ class Dapre_Wppb {
 	private function load_dependencies() {
 
 		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
+		 * The file containing utility functions that don't logically belong to any class or we want to keep out
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions.php';
 
-		/**
-		 * The class responsible for defining all actions that occur in the admin area.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-plugin-admin.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-plugin-public.php';
-
+	}
+	
+	/**
+	 * Class autoloader method
+	 * 
+	 * @param string $class class name which also includes the namespace
+	 * @return void
+	 */
+	private function autoload($class) {
+		
+		$class_path = strtolower( str_replace("_","-",$class) );
+		
+		$paths = explode('\\', $class_path);
+		
+		if ( count($paths) != 3 ) {
+			return;
+		}
+		
+		$class_file = plugin_dir_path( dirname( __FILE__ ) ) . "/$paths[1]/class-{$paths[2]}.php";
+		
+		if ( file_exists($class_file) ) {
+           	include_once($class_file);
+       	}
 	}
 
 	/**
@@ -129,8 +136,8 @@ class Dapre_Wppb {
 
 		$plugin_public = new plugin_public\Plugin_Public();
 
-		add_action( 'admin_enqueue_scripts', array($plugin_public, 'enqueue_styles') );
-		add_action( 'admin_enqueue_scripts', array($plugin_public, 'enqueue_scripts') );
+		add_action( 'wp_enqueue_scripts', array($plugin_public, 'enqueue_styles') );
+		add_action( 'wp_enqueue_scripts', array($plugin_public, 'enqueue_scripts') );
 
 	}
 }
