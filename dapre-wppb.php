@@ -85,13 +85,13 @@ register_deactivation_hook( __FILE__, __NAMESPACE__ . '\deactivate_plugin' );
 require plugin_dir_path( __FILE__ ) . 'includes/class-dapre-wppb.php';
 
 /**
- * Provides the asset timestamp as version number if we are in debug mode or the plugin version if we are in production mode
- * This allows to adjust and debug scripts and styles in staging environment because every time that we save the file 
- * the timestamp is updated and therefore the asset version changes.
- * When the code moves to production the version used is the official plugin version.
+ * If we are in production mode returns the plugin version.
+ * If we are in debug mode returns the timestamp of the file.
+ * Every time that we save the file the timestamp is updated 
+ * and therefore the asset version changes, making the debug easier.
  * 
  * @param string $asset_file complete path to the asset file (not to confuse with the URL)
- * @return string the asset version
+ * @return string the asset timestamp or the plugin version
  */
 function get_asset_version( $asset_file ) {
 	
@@ -118,4 +118,4 @@ function plugin_is_in_debug_mode() {
 	return ( (bool) WP_DEBUG === true );
 }
 
-$plugin = new includes\Dapre_Wppb();
+new includes\Dapre_Wppb();
