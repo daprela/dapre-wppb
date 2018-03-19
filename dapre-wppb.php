@@ -44,8 +44,12 @@ define( __NAMESPACE__ . '\PLUGIN_SLUG', plugin_basename( dirname(__FILE__) ) );
  * Define the version constant from the version in the header and the name constant
  */
 function setup_constants() {
+	
+	if ( ! function_exists( 'get_plugins' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+	}
 	// get all plugins installed
-	$all_plugins = get_plugins();
+	$all_plugins = \get_plugins();
 	$this_file = substr( __FILE__, strlen( PLUGIN_PATH ) );
 	
 	// get the headers of this plugin
