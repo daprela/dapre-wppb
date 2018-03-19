@@ -45,9 +45,11 @@ define( __NAMESPACE__ . '\PLUGIN_SLUG', plugin_basename( dirname(__FILE__) ) );
  */
 function setup_constants() {
 	
+	// get_plugins is available in admin. Let's make sure it's available everywhere
 	if ( ! function_exists( 'get_plugins' ) ) {
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 	}
+	
 	// get all plugins installed
 	$all_plugins = \get_plugins();
 	$this_file = substr( __FILE__, strlen( PLUGIN_PATH ) );
