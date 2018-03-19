@@ -61,7 +61,7 @@ function setup_constants() {
 	define( __NAMESPACE__ . '\PLUGIN_NAME', $plugin_headers['TextDomain'] );
 }
 
-add_action('plugins_loaded',  __NAMESPACE__ . '\setup_constants',2,-1000);
+add_action('plugins_loaded',  __NAMESPACE__ . '\setup_constants',-1000);
 
 /**
  * The code that runs during plugin activation.
