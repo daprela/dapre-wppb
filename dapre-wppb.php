@@ -35,34 +35,33 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-
-define( __NAMESPACE__ . '\PLUGIN_URLPATH', plugins_url( '/' , __FILE__ ) );
-define( __NAMESPACE__ . '\PLUGIN_PATH', WP_PLUGIN_DIR.'/'.plugin_basename( dirname(__FILE__) ).'/' );
-define( __NAMESPACE__ . '\PLUGIN_SLUG', plugin_basename( dirname(__FILE__) ) );
+setup_constants();
 
 /**
- * Define the version constant from the version in the header and the name constant
+ * Setup all constants
  */
 function setup_constants() {
 	
-	// get_plugins is available in admin. Let's make sure it's available everywhere
-	if ( ! function_exists( 'get_plugins' ) ) {
-		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+	// get_file_data should always be available. We leave this check just in case
+	if ( ! function_exists( 'get_file_data' ) ) {
+		require_once ABSPATH . 'wp-includes/functions.php';
 	}
 	
-	// get all plugins installed
-	$all_plugins = \get_plugins();
-	$this_file = substr( __FILE__, strlen( PLUGIN_PATH ) );
+	$default_headers = [
+		'TextDomain' => 'Text Domain',
+		'Version'	 => 'Version'
+	];
 	
-	// get the headers of this plugin
-	$plugin_headers = $all_plugins[PLUGIN_SLUG . '/' . $this_file];
+	$plugin_data = get_file_data( __FILE__ , $default_headers);
 	
-	define( __NAMESPACE__ . '\PLUGIN_VERSION', $plugin_headers['Version'] );
-	define( __NAMESPACE__ . '\PLUGIN_NAME', $plugin_headers['TextDomain'] );
+	define( __NAMESPACE__ . '\PLUGIN_VERSION', $plugin_data['Version'] );
+	define( __NAMESPACE__ . '\PLUGIN_NAME', $plugin_data['TextDomain'] );
+	define( __NAMESPACE__ . '\PLUGIN_URLPATH', plugins_url( '/' , __FILE__ ) );
+	define( __NAMESPACE__ . '\PLUGIN_PATH', WP_PLUGIN_DIR.'/'.plugin_basename( dirname(__FILE__) ).'/' );
+	define( __NAMESPACE__ . '\PLUGIN_SLUG', plugin_basename( dirname(__FILE__) ) );
 }
 
-add_action('plugins_loaded',  __NAMESPACE__ . '\setup_constants',-1000);
-
+register_activation_hook( __FILE__, __NAMESPACE__ . '\activate_plugin' );
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-activator.php
@@ -72,6 +71,7 @@ function activate_plugin() {
 	includes\Activator::activate();
 }
 
+register_deactivation_hook( __FILE__, __NAMESPACE__ . '\deactivate_plugin' );
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-deactivator.php
@@ -80,9 +80,6 @@ function deactivate_plugin() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-deactivator.php';
 	includes\Deactivator::deactivate();
 }
-
-register_activation_hook( __FILE__, __NAMESPACE__ . '\activate_plugin' );
-register_deactivation_hook( __FILE__, __NAMESPACE__ . '\deactivate_plugin' );
 
 /**
  * The core plugin class that is used to define internationalization,
