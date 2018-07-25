@@ -80,7 +80,7 @@ class Dapre_Wppb {
 		
 		$paths = explode('\\', $class_path);
 		
-		if ( $paths[0] != \dapre_cft\PLUGIN_NAME ) {
+		if ( $paths[0] != \dapre_wppb\PLUGIN_NAME ) {
 			return;
 		}
 		
