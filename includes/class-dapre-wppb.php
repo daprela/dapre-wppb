@@ -44,7 +44,7 @@ class Dapre_Wppb {
 	 */
 	public function __construct() {
 		
-		spl_autoload_register( array($this,'autoload') );
+		spl_autoload_register( [$this,'autoload'] );
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -80,7 +80,7 @@ class Dapre_Wppb {
 		
 		$paths = explode('\\', $class_path);
 		
-		if ( count($paths) != 3 ) {
+		if ( $paths[0] != \dapre_cft\PLUGIN_NAME ) {
 			return;
 		}
 		
@@ -104,7 +104,7 @@ class Dapre_Wppb {
 
 		$plugin_i18n = new i18n();
 
-		add_action( 'plugins_loaded', array($plugin_i18n, 'load_plugin_textdomain') );
+		add_action( 'plugins_loaded', [$plugin_i18n, 'load_plugin_textdomain'] );
 
 	}
 
@@ -119,8 +119,8 @@ class Dapre_Wppb {
 
 		$plugin_admin = new plugin_admin\Plugin_Admin();
 
-		add_action( 'admin_enqueue_scripts', array($plugin_admin, 'enqueue_styles') );
-		add_action( 'admin_enqueue_scripts', array($plugin_admin, 'enqueue_scripts') );
+		add_action( 'admin_enqueue_scripts', [$plugin_admin, 'enqueue_styles'] );
+		add_action( 'admin_enqueue_scripts', [$plugin_admin, 'enqueue_scripts'] );
 
 	}
 
@@ -135,8 +135,8 @@ class Dapre_Wppb {
 
 		$plugin_public = new plugin_public\Plugin_Public();
 
-		add_action( 'wp_enqueue_scripts', array($plugin_public, 'enqueue_styles') );
-		add_action( 'wp_enqueue_scripts', array($plugin_public, 'enqueue_scripts') );
+		add_action( 'wp_enqueue_scripts', [$plugin_public, 'enqueue_styles'] );
+		add_action( 'wp_enqueue_scripts', [$plugin_public, 'enqueue_scripts'] );
 
 	}
 }
