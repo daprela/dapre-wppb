@@ -9,7 +9,7 @@
  * @since      1.0.0
  *
  * @package    Dapre_Wppb
- * @subpackage Dapre_Wppb/admin/partials
+ * @subpackage Dapre_Wppb/admin/views
  */
 ?>
 
