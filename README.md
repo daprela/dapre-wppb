@@ -1,6 +1,6 @@
 This plugin boilerplate is a fork of Devin Vinson WPPB (https://github.com/DevinVinson/WordPress-Plugin-Boilerplate).
 
-I've made modifications to the original boilerplate to have something closer to my idea of OOP.
+I've made modifications to the original boilerplate to have something closer to my idea of OOP and take advantage of modern coding techniques.
 
 Here are the new features/modifications:
 
