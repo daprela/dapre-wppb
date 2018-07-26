@@ -9,4 +9,4 @@ Here are the new features/modifications:
 3. I've created a new version management mechanism. When the plugin is in a dev environment the asset file timestamp is used as asset version. This will avoid browser caching problems that are so bad during the development phase because every time the file is modified and saved the version changes.
 4. I've added a class autoloader. The autoloader will load ONLY the classes of this plugin.
 
-I believe that a boilerplate should be the basic foundation of a website. This boilerplate suggests best practices and can be ready to use in a few minutes with small modifications. No more prefixing of functions and classes names, no more worrying about including classes files.
+I believe that a boilerplate should constitute the basic foundation of a plugin. This boilerplate suggests best practices and can be ready to use in a few minutes with small modifications. No more prefixing of functions and classes names, no more worrying about including classes files.
