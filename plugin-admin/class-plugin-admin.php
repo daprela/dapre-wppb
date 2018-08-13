@@ -43,7 +43,7 @@ class Plugin_Admin {
 		/**
 		 * This function is provided for demonstration purposes only.
 		 */
-		$version = \dapre_wppb\get_asset_version( \dapre_wppb\PLUGIN_PATH . 'plugin-admin/css/dapre-wppb-admin.css');
+		$version = \dapre_wppb\get_asset_version( \dapre_wppb\PLUGIN_DIRPATH . 'plugin-admin/css/dapre-wppb-admin.css');
 		wp_enqueue_style( \dapre_wppb\PLUGIN_NAME, \dapre_wppb\PLUGIN_URLPATH . 'plugin-admin/css/dapre-wppb-admin.css', array(), $version, 'all' );
 
 
@@ -60,7 +60,7 @@ class Plugin_Admin {
 		 * This function is provided for demonstration purposes only.
 		 */
 		
-		$version = \dapre_wppb\get_asset_version( \dapre_wppb\PLUGIN_PATH . 'plugin-admin/js/dapre-wppb-admin.js');
+		$version = \dapre_wppb\get_asset_version( \dapre_wppb\PLUGIN_DIRPATH . 'plugin-admin/js/dapre-wppb-admin.js');
 		wp_enqueue_script( \dapre_wppb\PLUGIN_NAME, \dapre_wppb\PLUGIN_URLPATH . 'plugin-admin/js/dapre-wppb-admin.js', array( 'jquery' ), $version, false );
 
 	}

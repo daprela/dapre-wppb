@@ -57,7 +57,7 @@ function setup_constants() {
 	define( __NAMESPACE__ . '\PLUGIN_VERSION', $plugin_data['Version'] );
 	define( __NAMESPACE__ . '\PLUGIN_NAME', $plugin_data['TextDomain'] );
 	define( __NAMESPACE__ . '\PLUGIN_URLPATH', plugins_url( '/' , __FILE__ ) );
-	define( __NAMESPACE__ . '\PLUGIN_PATH', WP_PLUGIN_DIR.'/'.plugin_basename( dirname(__FILE__) ).'/' );
+	define( __NAMESPACE__ . '\PLUGIN_DIRPATH', WP_PLUGIN_DIR.'/'.plugin_basename( dirname(__FILE__) ).'/' );
 	define( __NAMESPACE__ . '\PLUGIN_SLUG', plugin_basename( dirname(__FILE__) ) );
 }
 
@@ -67,7 +67,7 @@ register_activation_hook( __FILE__, __NAMESPACE__ . '\activate_plugin' );
  * This action is documented in includes/class-activator.php
  */
 function activate_plugin() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-activator.php';
+	require_once PLUGIN_DIRPATH . 'includes/class-activator.php';
 	includes\Activator::activate();
 }
 
@@ -77,7 +77,7 @@ register_deactivation_hook( __FILE__, __NAMESPACE__ . '\deactivate_plugin' );
  * This action is documented in includes/class-deactivator.php
  */
 function deactivate_plugin() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-deactivator.php';
+	require_once PLUGIN_DIRPATH . 'includes/class-deactivator.php';
 	includes\Deactivator::deactivate();
 }
 
@@ -85,7 +85,7 @@ function deactivate_plugin() {
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-dapre-wppb.php';
+require PLUGIN_DIRPATH . 'includes/class-dapre-wppb.php';
 
 /**
  * If we are in production mode returns the plugin version.
