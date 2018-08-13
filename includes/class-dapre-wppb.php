@@ -64,7 +64,7 @@ class Dapre_Wppb {
 		/**
 		 * The file containing utility functions that don't logically belong to any class or we want to keep out
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions.php';
+		require_once \dapre_wppb\PLUGIN_PATH . 'includes/functions.php';
 
 	}
 	
@@ -84,7 +84,7 @@ class Dapre_Wppb {
 			return;
 		}
 		
-		$class_file = plugin_dir_path( dirname( __FILE__ ) ) . "/$paths[1]/class-{$paths[2]}.php";
+		$class_file = \dapre_wppb\PLUGIN_PATH . "$paths[1]/class-{$paths[2]}.php";
 		
 		if ( file_exists($class_file) ) {
            	include_once($class_file);
